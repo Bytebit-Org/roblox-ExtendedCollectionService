@@ -9,11 +9,13 @@ return function()
             end)
 
             it("should wrap CollectionService correctly", function()
-                expect(XCollectionService.Name).to.equal("CollectionService")
-
                 local part = Instance.new("Part")
 
+                expect(XCollectionService.Name).to.equal("CollectionService")
+
                 expect(XCollectionService:HasTag(part, "UnknownTag")).to.equal(false)
+
+                expect(function() local _ = XCollectionService.InvalidKeyThatDoesntExist end).to.throw()
                 
                 part:Destroy()
             end)
