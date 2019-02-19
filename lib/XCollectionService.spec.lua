@@ -1,15 +1,27 @@
 return function()
-    if pcall(function() game:GetService("CollectionService") end) then
-        local XCSModule = require(script.Parent.XCollectionService)
-        local XCollectionService = XCSModule.GetInstance()
+    describe("XCollectionService", function()
+        if pcall(function() game:GetService("CollectionService") end) then
+            local XCSModule = require(script.Parent.XCollectionService)
+            local XCollectionService = XCSModule.GetInstance()
 
-        it("should only create one instance", function()
-            expect(XCSModule.GetInstance()).to.equal(XCollectionService)
-        end)
-    else
-        print("No CollectionService, not running dependent tests")
-        it("should error without CollectionService", function()
-            expect(function() game:GetService("CollectionService") end).to.throw()
-        end)
-    end
+            it("should only create one instance", function()
+                expect(XCSModule.GetInstance()).to.equal(XCollectionService)
+            end)
+
+            it("should wrap CollectionService correctly", function()
+                expect(XCollectionService.Name).to.equal("CollectionService")
+
+                local part = Instance.new("Part")
+
+                expect(XCollectionService:HasTag(part, "UnknownTag")).to.equal(false)
+                
+                part:Destroy()
+            end)
+        else
+            print("No CollectionService, not running dependent tests")
+            it("should error without CollectionService", function()
+                expect(function() game:GetService("CollectionService") end).to.throw()
+            end)
+        end
+    end)
 end
