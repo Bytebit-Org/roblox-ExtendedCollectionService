@@ -79,8 +79,8 @@ True if the instance has all the tags
 Gets all instances that match the given set of tags
 
 **Parameters:**
-- `The` (`array<string>`)  
-tags to match
+- `tags` (`array<string>`)  
+The tags to match
 
 **Returns:**  
 `array<Instance>`  

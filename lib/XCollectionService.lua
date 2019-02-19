@@ -108,7 +108,7 @@ end
 --[[**
     Gets all instances that match the given set of tags
 
-    @param [t:array<string>] The tags to match
+    @param [t:array<string>] tags The tags to match
 
     @returns [t:array<Instance>] The instances that match the set of tags
 **--]]
