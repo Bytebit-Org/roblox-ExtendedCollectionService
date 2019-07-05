@@ -6,7 +6,7 @@ Class.__index = function(inst, key)
     -- Since this is an extension wrapper for CollectionService, just return CollectionService's version
 
     if not CollectionService[key] then
-        error("Attempt to index " + tostring(key) + ", a nil value", 2)
+        error("Attempt to index " .. tostring(key) .. ", a nil value", 2)
     end
     
 	if type(CollectionService[key]) == "function" then
